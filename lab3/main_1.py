@@ -1,8 +1,13 @@
 from math import (sqrt, fabs)
 
 try:
-	x = float(input('Введите x: '))
-	
+	xStart = float(input('Введите первую границу: '))
+	xEnd   = float(input('Введите вторую границу: '))
+	dx	   = float(input('Введите интвервал (dx): '))
+
+	if (dx <= 0):
+		raise ValueError	
+
 	def f(x):
 		if x <= -6:
 			D = 16 - 4 * (x + 8)**2
@@ -29,7 +34,25 @@ try:
 		if x >= 2:
 			return x - 3
 
-	print('x = {0:.5f}, y = {1:.5f}'.format(x, f(x)))
+
+	# Вывод входных данных
+	print('')
+	print('=====================================')
+	print('xStart = {0:.1f}, xEnd = {1:.1f}, dx = {2:.1f}'.format(xStart, xEnd, dx))
+	print('=====================================')
+	print('')
+
+	print('╔======================╗')
+	print('║     X     ║     Y    ║')
+	print('║======================║')
+	
+	# Вывод таблицы с аргументом и результатом функции
+	x = xStart
+	while (x < xEnd):
+		print('║   {0:.1f}    ║    {1:.1f}   ║'.format(x, f(x)))
+		x += dx
+
+	print('╚=====================╝')
 
 except ValueError:
     print('Введите корректное число.')
