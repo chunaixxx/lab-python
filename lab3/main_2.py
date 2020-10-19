@@ -1,21 +1,33 @@
 from math import (sqrt, fabs)
+from random import *
 
 try:
-	x = float(input('Введите x: '))
-	y = float(input('Введите y: '))
 	R = float(input('Введите радиус: '))
-	a = float(input('Введите ширину прямоугольника: '))/2
-	b = float(input('Введите высоту прямоугольника: '))/2
+	a = float(input('Введите ширину прямоугольника: '))
+	b = float(input('Введите высоту прямоугольника: '))
 
-	def f():
-		if (x <= 0 and y <= 0 and x * x + y * y <= R * R and y >= -b)\
-		or (x <= a and y <= b and x > 0 and y > 0 and x * x + y * y >= R * R):
-			return 'Попадает'
+	def f(x, y):
+		if (x <= 0 and y <= 0 and x * x + y * y <= R * R and y >= -b/2)\
+		or (x <= a/2 and y <= b/2 and x > 0 and y > 0 and x * x + y * y >= R * R):
+			return 'Yes'
 		else:
-			return 'Не попадает'
+			return 'No'
 
-	print('x = {0:.5f}, y = {1:.5f}, R = {2:.5f}, a = {3:.5f}, b = {4:.5f}'.format(x, y, R, a*2, b*2))
-	print('Результат: {0:.10s}'.format(f()))
+	# Вывод входных данных
+	print('')
+	print('=================================')
+	print('R = {0:.1f}, a = {1:.1f}, b = {2:.1f}'.format(R, a, b))
+	print('=================================')
+	print('')
+
+	print('╔===========╗==========╔===========╗')
+	print('║     X     ║     Y    ║    Res    ║')
+	print('║===========║==========║===========║')
+	for n in range(10):
+		x = uniform(-b - 5, b + 5)
+		y = uniform(-a - 5, a + 5)
+		print('║    {0:.1f}    ║    {1:.1f}    ║    {2:.3s}    ║'.format(x, y, f(x, y)))
+	print('╚==================================╝')
 
 except ValueError:
     print('Введите корректное число.')
