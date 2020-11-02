@@ -1,3 +1,4 @@
+from math import (ceil)
 arr = []
 
 try:
@@ -36,32 +37,34 @@ try:
 		return sum
 
 	# Преобразовывает массив таким образом, что первая половина элементов
-	# массива стоят на четных позициях, а вторая на нечетных
+	# массива стоит на четных позициях, а вторая на нечетных
 	def changeArr(arr):
-		newArr = []
-		firstHalf = -1
+		newArr = [0] * len(arr)
+		indexEven = 0
+		indexOdd = 1
 
-		if (arrayLength % 2 == 1):
-			firstHalf = int(((arrayLength - 1)/2))
-		else:
-			firstHalf = int(arrayLength/2)
+		firstHalf = ceil(len(arr)/2)
 
-		for i in range(firstHalf):
-			newArr.append(arr[i])
-			if (i != firstHalf - 1):
-				newArr.append(None)
+		arrFirst = arr[:firstHalf]
+		arrSecond = arr[firstHalf:]
 
-		for i in range(firstHalf, arrayLength):
-			if (i != firstHalf):
-				newArr.append(None)
-			newArr.append(arr[i])
+		for i in range(len(arrFirst)):
+			newArr[indexEven] = arrFirst[i]
+			indexEven += 2
+		
+		for i in range(len(arrSecond)):
+			newArr[indexOdd] = arrSecond[i]
+			indexOdd += 2
 
 		return newArr
-		
+	
 	print('Исходный массив: {}'.format(arr))
 	print('_________________________________')
 	print('Минимальное по модулю число: {}'.format(minArr(arr)))
 	print('Сумма модулей элементов после нуля: {}'.format(sumAfterZero(arr)))
 	print('Преобразованный массив: {}'.format(changeArr(arr)))
+
 except ValueError:
     print('Введите корректное число.')
+
+
