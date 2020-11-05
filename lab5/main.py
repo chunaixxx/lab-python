@@ -1,11 +1,7 @@
 from random import (randint)
 
-# Количество строк и стобцов в двумерном массиве
-rowLength = 10
-colLength = 10
-
 # Возвращает двумерный массив Row x Col со случайными значениями
-# В диапазоне от min до max
+# в диапазоне от min до max
 def makeRandomArr(row, col, min, max):
 	arr = [[0] * col for i in range(row)]
 
@@ -17,6 +13,8 @@ def makeRandomArr(row, col, min, max):
 
 # Выводит количество локальных минимумов
 def findLocalMin(arr):
+	rowLength = len(arr)
+	colLength = len(arr[0])
 	count = 0
 
 	for Row in range(rowLength):
@@ -107,6 +105,9 @@ def findLocalMin(arr):
 
 # Находит сумму элементов выше главной диагонали
 def sumAbs(arr):
+	rowLength = len(arr)
+	colLength = len(arr[0])
+
 	sum = 0
 
 	startIndex = 1
@@ -118,10 +119,10 @@ def sumAbs(arr):
 	
 	return sum
 
-arr = makeRandomArr(rowLength, colLength, 0, 9)
+arr = makeRandomArr(10, 10, 0, 9)
 
 print('_______ Исходный массив _______')
-for Row in range(rowLength):
+for Row in range(len(arr)):
 	print(arr[Row])
 print('_______________________________')
 
